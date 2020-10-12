@@ -30,10 +30,10 @@ def graph2gdf(graph):
         streets.append(street)
     for street in streets:
         if 'geometry' not in street:
-            u = Point(graph.node[street['osm_u']]['x'],
-                        graph.node[street['osm_u']]['y'])
-            v = Point(graph.node[street['osm_v']]['x'],
-                        graph.node[street['osm_v']]['y'])
+            u = Point(graph.nodes[street['osm_u']]['x'],
+                        graph.nodes[street['osm_u']]['y'])
+            v = Point(graph.nodes[street['osm_v']]['x'],
+                        graph.nodes[street['osm_v']]['y'])
             street['geometry'] = LineString([u, v])
     converted = gpd.GeoDataFrame(streets)[
         ['osmid', 'name', 'length', 'geometry']]
